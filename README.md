@@ -1,7 +1,6 @@
 # Blockchain-based Federated Learning Utilizing Zero-Knowledge Proofs for Verifiable Training and Aggregation
 
  This project leverages zero-knowledge proofs (i.e., zk-SNARKs) to guarantee the privacy and verifiability of local model training and global model aggregation. The proposed framework verifies the local and global models' computational correctness without storing and revealing them on the blockchain. We evaluate our framework by utilizing a real-life dataset, with experimental results demonstrating its viability regarding both computational costs and learning model performance.
-The paper detailing this project can be found [here](https://doi.org/10.1109/Blockchain62396.2024.00017).
 
 ## Prerequisites- Use Same Versions
 
@@ -206,5 +205,3 @@ GITHUB-REPO-URL/tree/main
 
       python devices/main.py
       
-## Acknowledgement
-The financial support by the Austrian Federal Ministry for Digital and Economic Affairs, the National Foundation for Research, Technology and Development as well as the Christian Doppler Research Association is gratefully acknowledged.

@@ -1,4 +1,0 @@
-def main(private field a, private field b) -> field {
-    field result = a * b;
-    return result;
-}

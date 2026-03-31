@@ -8,11 +8,18 @@ from dotenv import load_dotenv
 
 def get_project_root_from_env():
     load_dotenv(override=True)
-    return os.getenv("ProjectRoot")
+    # Try different environment variable spellings / fallbacks
+    project_root = os.getenv("ProjectRoot")
+    if project_root is None:
+        project_root = os.getenv("VERIBLOCK_PROJECT_ROOT")
+    # Hardcoded fallback path if none set in environment variables
+    if project_root is None:
+        project_root = "/Users/rmn/Veriblock-FL"
+    return project_root
 
 
 def get_config_file_path():
-    return get_project_root_from_env() + "/CONFIG.yaml"
+    return os.path.join(get_project_root_from_env(), "CONFIG.yaml")
 
 
 def fix_config_yaml_project_root_path():

@@ -2,5 +2,6 @@
     "cSpell.words": [
         "gdigest",
         "lhashes"
-    ]
+    ],
+    "git.ignoreLimitWarning": true
 }

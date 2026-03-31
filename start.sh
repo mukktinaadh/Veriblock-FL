@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
 # remove old docker containers
 container_ids=$(sudo docker ps -q)
@@ -7,18 +7,15 @@ do
     sudo docker rm -f $container_id
 done
 
-# restart docker containers (forcing linux/amd64 for M3 Mac)
-sudo docker run -d --platform linux/amd64 -p 8545:8545 trufflesuite/ganache:v7.0.0 --miner.blockGasLimit=0x1fffffffffffff --chain.allowUnlimitedContractSize=true --wallet.defaultBalance 1000000000 --accounts 15
-sudo docker run -d --platform linux/amd64 --name rabbitmq -p 5672:5672 -p 5673:5673 -p 15672:15672 rabbitmq:3-management
+# restart docker containers
+sudo docker run -d -p 8545:8545 trufflesuite/ganache:v7.0.0 --miner.blockGasLimit=0x1fffffffffffff  --chain.allowUnlimitedContractSize=true --wallet.defaultBalance 1000000000 --accounts 15
+sudo docker run -d --name rabbitmq -p 5672:5672 -p 5673:5673 -p 15672:15672 rabbitmq:3-management
 
 # recompile/remigrate smart contract files
-cd "blockchain/truffle/"
+cd blockchain/truffle/
 sudo rm -rf build/contracts/*
-
-# Fix path spaces issue using $PWD
-docker run --rm --platform linux/amd64 -v "$(pwd):/project" -w /project trufflesuite/truffle:5.11.5 truffle compile
-docker run --rm --platform linux/amd64 -v "$(pwd):/project" -w /project trufflesuite/truffle:5.11.5 truffle migrate
-
+truffle compile
+truffle migrate
 cd ./../..
 echo "Current directory: $(pwd)"
 
